@@ -22,7 +22,7 @@ internal class HashBase {
     }
     
     /** Common part for hash calculation. Prepare header data. */
-    internal func prepare(_ len:Int = 64) -> NSMutableData {
+    final internal func prepare(_ len:Int = 64) -> NSMutableData {
         var tmpMessage: NSMutableData = NSMutableData(data: self.message)
         
         // Step 1. Append Padding Bits
