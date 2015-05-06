@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0610"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "03EB843E1A82948E00043870"
+               BlueprintIdentifier = "5575C7951AFA8D00001EEF98"
                BuildableName = "CryptoSwift OSXTests.xctest"
                BlueprintName = "CryptoSwift OSXTests"
                ReferencedContainer = "container:CryptoSwift.xcodeproj">
@@ -46,11 +46,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "03EB843E1A82948E00043870"
+               BlueprintIdentifier = "5575C7951AFA8D00001EEF98"
                BuildableName = "CryptoSwift OSXTests.xctest"
                BlueprintName = "CryptoSwift OSXTests"
                ReferencedContainer = "container:CryptoSwift.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AESTests/testAESPerformance()">
+               </Test>
+               <Test
+                  Identifier = "AESTests/testAESPerformanceCommonCrypto()">
+               </Test>
+               <Test
+                  Identifier = "ChaCha20Tests/testChaCha20Performance()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		03EB844E1A8294BE00043870 /* CryptoSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 754BE45A19693E190098E6F3 /* CryptoSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		03EB84501A8294E800043870 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EB844F1A8294E800043870 /* Security.framework */; };
 		03EB84511A82951100043870 /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7552614D1993051E000D2B20 /* Hash.swift */; };
 		03EB84521A82951100043870 /* Cipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563B2E719B14D4300B152CD /* Cipher.swift */; };
 		03EB84531A82951100043870 /* CipherBlockMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC3AE21A4E412000ADF343 /* CipherBlockMode.swift */; };
@@ -37,6 +36,18 @@
 		03EB846A1A82951100043870 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75164E4819AD30AC00737F30 /* Utils.swift */; };
 		03EB846B1A82951100043870 /* Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758C764019B61AE500653BC6 /* Generics.swift */; };
 		5575C7931AFA8A89001EEF98 /* PKCS5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0A56F1AB1A1BB000BD8D2 /* PKCS5.swift */; };
+		5575C7941AFA8BBE001EEF98 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75445820196AA2A5002FF20E /* Security.framework */; };
+		5575C7A51AFA8D00001EEF98 /* HMACTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758A94271A65C59200E46135 /* HMACTests.swift */; };
+		5575C7A61AFA8D00001EEF98 /* Poly1305Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75100F8E19B0BC890005C5F5 /* Poly1305Tests.swift */; };
+		5575C7A71AFA8D00001EEF98 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DA2561A4ED47B002BA3EF /* Helpers.swift */; };
+		5575C7A81AFA8D00001EEF98 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754C8FEC19979F94005AD904 /* ArrayExtension.swift */; };
+		5575C7A91AFA8D00001EEF98 /* HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754BE46719693E190098E6F3 /* HashTests.swift */; };
+		5575C7AA1AFA8D00001EEF98 /* ChaCha20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DA2581A4ED4D7002BA3EF /* ChaCha20Tests.swift */; };
+		5575C7AB1AFA8D00001EEF98 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755FB1D9199E347D00475437 /* ExtensionsTest.swift */; };
+		5575C7AC1AFA8D00001EEF98 /* PaddingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DA2521A4ED0A4002BA3EF /* PaddingTests.swift */; };
+		5575C7AD1AFA8D00001EEF98 /* AESTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DA2541A4ED408002BA3EF /* AESTests.swift */; };
+		5575C7B11AFA8D00001EEF98 /* HMACTests.swift in Resources */ = {isa = PBXBuildFile; fileRef = 758A94271A65C59200E46135 /* HMACTests.swift */; };
+		5575C7BB1AFA8DD0001EEF98 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EB84351A82948E00043870 /* CryptoSwift.framework */; };
 		750A54601992D2680017DA75 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A545F1992D2680017DA75 /* MD5.swift */; };
 		75100F8F19B0BC890005C5F5 /* Poly1305Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75100F8E19B0BC890005C5F5 /* Poly1305Tests.swift */; };
 		75153D4219AA3C7900750381 /* SHA2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75153D4119AA3C7900750381 /* SHA2.swift */; };
@@ -81,6 +92,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5575C7B91AFA8DC9001EEF98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 754BE44C19693E190098E6F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03EB84341A82948E00043870;
+			remoteInfo = "CryptoSwift OSX";
+		};
 		75B601E3197D69EB0009B53D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 754BE44C19693E190098E6F3 /* Project object */;
@@ -146,7 +164,7 @@
 
 /* Begin PBXFileReference section */
 		03EB84351A82948E00043870 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		03EB844F1A8294E800043870 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		5575C7B51AFA8D00001EEF98 /* CryptoSwift OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CryptoSwift OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		750A545F1992D2680017DA75 /* MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
 		75100F8E19B0BC890005C5F5 /* Poly1305Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poly1305Tests.swift; sourceTree = "<group>"; };
 		75153D4119AA3C7900750381 /* SHA2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHA2.swift; sourceTree = "<group>"; };
@@ -197,7 +215,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03EB84501A8294E800043870 /* Security.framework in Frameworks */,
+				5575C7941AFA8BBE001EEF98 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5575C7AE1AFA8D00001EEF98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5575C7BB1AFA8DD0001EEF98 /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +249,6 @@
 		24B0BBA29D734E62809E53BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				03EB844F1A8294E800043870 /* Security.framework */,
 				75445820196AA2A5002FF20E /* Security.framework */,
 			);
 			name = Frameworks;
@@ -245,6 +270,7 @@
 				754BE45519693E190098E6F3 /* CryptoSwift.framework */,
 				754BE46019693E190098E6F3 /* CryptoSwiftTests.xctest */,
 				03EB84351A82948E00043870 /* CryptoSwift.framework */,
+				5575C7B51AFA8D00001EEF98 /* CryptoSwift OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -359,6 +385,24 @@
 			productReference = 03EB84351A82948E00043870 /* CryptoSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		5575C7951AFA8D00001EEF98 /* CryptoSwift OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5575C7B21AFA8D00001EEF98 /* Build configuration list for PBXNativeTarget "CryptoSwift OSXTests" */;
+			buildPhases = (
+				5575C7A41AFA8D00001EEF98 /* Sources */,
+				5575C7AE1AFA8D00001EEF98 /* Frameworks */,
+				5575C7B01AFA8D00001EEF98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5575C7BA1AFA8DC9001EEF98 /* PBXTargetDependency */,
+			);
+			name = "CryptoSwift OSXTests";
+			productName = CryptoSwiftTests;
+			productReference = 5575C7B51AFA8D00001EEF98 /* CryptoSwift OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		754BE45419693E190098E6F3 /* CryptoSwift iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 754BE46B19693E190098E6F3 /* Build configuration list for PBXNativeTarget "CryptoSwift iOS" */;
@@ -408,7 +452,7 @@
 		754BE44C19693E190098E6F3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Marcin Krzyzanowski";
 				TargetAttributes = {
 					03EB84341A82948E00043870 = {
@@ -438,6 +482,7 @@
 				754BE45419693E190098E6F3 /* CryptoSwift iOS */,
 				03EB84341A82948E00043870 /* CryptoSwift OSX */,
 				754BE45F19693E190098E6F3 /* CryptoSwiftTests */,
+				5575C7951AFA8D00001EEF98 /* CryptoSwift OSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -447,6 +492,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5575C7B01AFA8D00001EEF98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5575C7B11AFA8D00001EEF98 /* HMACTests.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +553,22 @@
 				03EB84531A82951100043870 /* CipherBlockMode.swift in Sources */,
 				03EB84521A82951100043870 /* Cipher.swift in Sources */,
 				03EB84511A82951100043870 /* Hash.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5575C7A41AFA8D00001EEF98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5575C7A51AFA8D00001EEF98 /* HMACTests.swift in Sources */,
+				5575C7A61AFA8D00001EEF98 /* Poly1305Tests.swift in Sources */,
+				5575C7A71AFA8D00001EEF98 /* Helpers.swift in Sources */,
+				5575C7A81AFA8D00001EEF98 /* ArrayExtension.swift in Sources */,
+				5575C7A91AFA8D00001EEF98 /* HashTests.swift in Sources */,
+				5575C7AA1AFA8D00001EEF98 /* ChaCha20Tests.swift in Sources */,
+				5575C7AB1AFA8D00001EEF98 /* ExtensionsTest.swift in Sources */,
+				5575C7AC1AFA8D00001EEF98 /* PaddingTests.swift in Sources */,
+				5575C7AD1AFA8D00001EEF98 /* AESTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +626,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5575C7BA1AFA8DC9001EEF98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03EB84341A82948E00043870 /* CryptoSwift OSX */;
+			targetProxy = 5575C7B91AFA8DC9001EEF98 /* PBXContainerItemProxy */;
+		};
 		75B601E4197D69EB0009B53D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 754BE45419693E190098E6F3 /* CryptoSwift iOS */;
@@ -599,6 +673,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -637,6 +712,63 @@
 				PRODUCT_NAME = CryptoSwift;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5575C7B31AFA8D00001EEF98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"includes/**",
+				);
+				INFOPLIST_FILE = CryptoSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LLVM_LTO = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = CryptoSwiftTests/Bridging.h;
+			};
+			name = Debug;
+		};
+		5575C7B41AFA8D00001EEF98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_UNROLL_LOOPS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"includes/**",
+				);
+				INFOPLIST_FILE = CryptoSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = CryptoSwiftTests/Bridging.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
 			};
 			name = Release;
 		};
@@ -829,6 +961,15 @@
 			buildConfigurations = (
 				03EB84491A82948E00043870 /* Debug */,
 				03EB844A1A82948E00043870 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5575C7B21AFA8D00001EEF98 /* Build configuration list for PBXNativeTarget "CryptoSwift OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5575C7B31AFA8D00001EEF98 /* Debug */,
+				5575C7B41AFA8D00001EEF98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
