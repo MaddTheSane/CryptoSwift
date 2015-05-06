@@ -12,6 +12,7 @@ import Foundation
 protocol Initiable  {
     init(_ v: Int)
     init(_ v: UInt)
+    init(_ v: Int64)
 }
 
 extension Int:Initiable {}
@@ -116,6 +117,32 @@ func shiftLeft<T: SignedIntegerType where T: Initiable>(value: T, count: Int) ->
     return shiftedValue
 }
 
+// Generic function itself, unsigned version
+// FIXME: this generic function is not as generic as I would. It crashes for smaller types
+func shiftLeft<T: UnsignedIntegerType where T: Initiable>(value: T, count: Int) -> T {
+    if (value == 0) {
+        return 0;
+    }
+    
+    var bitsCount = (sizeofValue(value) * 8)
+    var shiftCount = Int(Swift.min(count, bitsCount - 1))
+    
+    var shiftedValue:T = 0;
+    for bitIdx in 0..<bitsCount {
+        var bit = T(IntMax(1 << bitIdx))
+        if ((value & bit) == bit) {
+            shiftedValue = shiftedValue | T(bit << shiftCount)
+        }
+    }
+    
+    if (shiftedValue != 0 && count >= bitsCount) {
+        // clear last bit that couldn't be shifted out of range
+        shiftedValue = shiftedValue & T(~(1 << (bitsCount - 1)))
+    }
+    return shiftedValue
+}
+
+#if false
 // for any f*** other Integer type - this part is so non-Generic
 func shiftLeft(value: UInt, count: Int) -> UInt {
     return UInt(shiftLeft(Int(value), count))
@@ -152,4 +179,4 @@ func shiftLeft(value: Int32, count: Int) -> Int32 {
 func shiftLeft(value: Int64, count: Int) -> Int64 {
     return Int64(shiftLeft(Int(value), count))
 }
-
+#endif

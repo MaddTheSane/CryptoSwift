@@ -296,6 +296,7 @@
 				24B0BBA29D734E62809E53BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		754BE45619693E190098E6F3 /* Products */ = {
 			isa = PBXGroup;
