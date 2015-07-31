@@ -8,10 +8,14 @@
 
 import Foundation
 
-public class AES {
+final public class AES {
+    
+    enum Error: ErrorType {
+        case BlockSizeExceeded
+    }
     
     public enum AESVariant:Int {
-        case unknown, aes128, aes192, aes256
+        case aes128 = 1, aes192, aes256
         
         var Nk:Int { // Nk words
             return [4,6,8][self.rawValue - 1]
@@ -38,7 +42,7 @@ public class AES {
         case 256:
             return .aes256
         default:
-            return .unknown
+            preconditionFailure("Unknown AES variant for given key.")
         }
     }
     private let key:[UInt8]
@@ -128,33 +132,29 @@ public class AES {
     convenience public init?(key:String, iv:String, blockMode:CipherBlockMode = .CBC) {
         if let kkey = key.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)?.arrayOfBytes(), let iiv = iv.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)?.arrayOfBytes() {
             self.init(key: kkey, iv: iiv, blockMode: blockMode)
-        } else {
-            self.init(key: [UInt8](), iv: [UInt8](), blockMode: blockMode) //FIXME: this is due Swift bug, remove this line later, when fixed
-            return nil
         }
+        return nil
     }
     
     /**
     Encrypt message. If padding is necessary, then PKCS7 padding is added and needs to be removed after decryption.
     
-    :param: message Plaintext data
+    - parameter message: Plaintext data
     
-    :returns: Encrypted data
+    - returns: Encrypted data
     */
 
-    public func encrypt(bytes:[UInt8], padding:Padding? = PKCS7()) -> [UInt8]? {
+    public func encrypt(bytes:[UInt8], padding:Padding? = PKCS7()) throws -> [UInt8] {
         var finalBytes = bytes;
 
         if let padding = padding {
             finalBytes = padding.add(bytes, blockSize: AES.blockSize)
-        } else if (bytes.count % AES.blockSize != 0) {
-            // 128 bit block exceeded, need padding
-            assert(false, "AES 128-bit block exceeded!");
-            return nil
+        } else if bytes.count % AES.blockSize != 0 {
+            throw Error.BlockSizeExceeded
         }
 
         let blocks = finalBytes.chunks(AES.blockSize) // 0.34
-        return blockMode.encryptBlocks(blocks, iv: self.iv, cipherOperation: encryptBlock)
+        return try blockMode.encryptBlocks(blocks, iv: self.iv, cipherOperation: encryptBlock)
     }
     
     private func encryptBlock(block:[UInt8]) -> [UInt8]? {
@@ -162,8 +162,8 @@ public class AES {
         
         autoreleasepool { () -> () in
             var state:[[UInt8]] = [[UInt8]](count: variant.Nb, repeatedValue: [UInt8](count: variant.Nb, repeatedValue: 0))
-            for (i, row) in enumerate(state) {
-                for (j, val) in enumerate(row) {
+            for (i, row) in state.enumerate() {
+                for (j, _) in row.enumerate() {
                     state[j][i] = block[i * row.count + j]
                 }
             }
@@ -192,40 +192,39 @@ public class AES {
         return out
     }
     
-    public func decrypt(bytes:[UInt8], padding:Padding? = PKCS7()) -> [UInt8]? {
-        if (bytes.count % AES.blockSize != 0) {
-            // 128 bit block exceeded
-            assert(false,"AES 128-bit block exceeded!")
-            return nil
+    public func decrypt(bytes:[UInt8], padding:Padding? = PKCS7()) throws -> [UInt8] {
+        if bytes.count % AES.blockSize != 0 {
+            throw Error.BlockSizeExceeded
         }
         
         let blocks = bytes.chunks(AES.blockSize)
-        let out:[UInt8]?
-        if (blockMode == .CFB) {
-            // CFB uses encryptBlock to decrypt
-            out = blockMode.decryptBlocks(blocks, iv: self.iv, cipherOperation: encryptBlock)
-        } else {
-            out = blockMode.decryptBlocks(blocks, iv: self.iv, cipherOperation: decryptBlock)
+        let out:[UInt8]
+        switch (blockMode) {
+        case .CFB, .CTR:
+            // CFB, CTR uses encryptBlock to decrypt
+            out = try blockMode.decryptBlocks(blocks, iv: self.iv, cipherOperation: encryptBlock)
+        default:
+            out = try blockMode.decryptBlocks(blocks, iv: self.iv, cipherOperation: decryptBlock)
         }
         
-        if let out = out, let padding = padding {
+        if let padding = padding {
             return padding.remove(out, blockSize: nil)
         }
         
-        return out;
+        return out
     }
     
     private func decryptBlock(block:[UInt8]) -> [UInt8]? {
         var state:[[UInt8]] = [[UInt8]](count: variant.Nb, repeatedValue: [UInt8](count: variant.Nb, repeatedValue: 0))
-        for (i, row) in enumerate(state) {
-            for (j, val) in enumerate(row) {
+        for (i, row) in state.enumerate() {
+            for (j, _) in row.enumerate() {
                 state[j][i] = block[i * row.count + j]
             }
         }
         
         state = addRoundKey(state,expandedKey, variant.Nr)
         
-        for roundCount in reverse(1..<variant.Nr) {
+        for roundCount in (1..<variant.Nr).reverse() {
             state = invShiftRows(state)
             state = invSubBytes(state)
             state = addRoundKey(state, expandedKey, roundCount)
@@ -276,7 +275,7 @@ public class AES {
                 tmp[wordIdx] = w[4*(i-1)+wordIdx]
             }
             if ((i % variant.Nk) == 0) {
-                let rotWord = rotateLeft(UInt32.withBytes(tmp), 8).bytes(sizeof(UInt32)) // RotWord
+                let rotWord = rotateLeft(UInt32.withBytes(tmp), n: 8).bytes(sizeof(UInt32)) // RotWord
                 tmp = subWord(rotWord)
                 tmp[0] = tmp[0] ^ Rcon[i/variant.Nk]
             } else if (variant.Nk > 6 && (i % variant.Nk) == 4) {
@@ -296,8 +295,8 @@ extension AES {
     
     // byte substitution with table (S-box)
     public func subBytes(inout state:[[UInt8]]) {
-        for (i,row) in enumerate(state) {
-            for (j,value) in enumerate(row) {
+        for (i,row) in state.enumerate() {
+            for (j,value) in row.enumerate() {
                 state[i][j] = AES.sBox[Int(value)]
             }
         }
@@ -305,8 +304,8 @@ extension AES {
     
     public func invSubBytes(state:[[UInt8]]) -> [[UInt8]] {
         var result = state
-        for (i,row) in enumerate(state) {
-            for (j,value) in enumerate(row) {
+        for (i,row) in state.enumerate() {
+            for (j,value) in row.enumerate() {
                 result[i][j] = AES.invSBox[Int(value)]
             }
         }
@@ -339,7 +338,7 @@ extension AES {
         var a = a, b = b
         var p:UInt8 = 0, hbs:UInt8 = 0
         
-        for i in 0..<8 {
+        for _ in 0..<8 {
             if (b & 1 == 1) {
                 p ^= a
             }
@@ -355,8 +354,8 @@ extension AES {
     
     public func matrixMultiplyPolys(matrix:[[UInt8]], _ array:[UInt8]) -> [UInt8] {
         var returnArray:[UInt8] = [UInt8](count: array.count, repeatedValue: 0)
-        for (i, row) in enumerate(matrix) {
-            for (j, boxVal) in enumerate(row) {
+        for (i, row) in matrix.enumerate() {
+            for (j, boxVal) in row.enumerate() {
                 returnArray[i] = multiplyPolys(boxVal, array[j]) ^ returnArray[i]
             }
         }
@@ -379,7 +378,7 @@ extension AES {
     // mixes data (independently of one another)
     public func mixColumns(state:[[UInt8]]) -> [[UInt8]] {
         var state = state
-        var colBox:[[UInt8]] = [[2,3,1,1],[1,2,3,1],[1,1,2,3],[3,1,1,2]]
+        let colBox:[[UInt8]] = [[2,3,1,1],[1,2,3,1],[1,1,2,3],[3,1,1,2]]
         
         var rowMajorState = [[UInt8]](count: state.count, repeatedValue: [UInt8](count: state.first!.count, repeatedValue: 0)) //state.map({ val -> [UInt8] in return val.map { _ in return 0 } }) // zeroing
         var newRowMajorState = rowMajorState
@@ -390,7 +389,7 @@ extension AES {
             }
         }
         
-        for (i, row) in enumerate(rowMajorState) {
+        for (i, row) in rowMajorState.enumerate() {
             newRowMajorState[i] = matrixMultiplyPolys(colBox, row)
         }
         
@@ -405,7 +404,7 @@ extension AES {
     
     public func invMixColumns(state:[[UInt8]]) -> [[UInt8]] {
         var state = state
-        var invColBox:[[UInt8]] = [[14,11,13,9],[9,14,11,13],[13,9,14,11],[11,13,9,14]]
+        let invColBox:[[UInt8]] = [[14,11,13,9],[9,14,11,13],[13,9,14,11],[11,13,9,14]]
         
         var colOrderState = state.map({ val -> [UInt8] in return val.map { _ in return 0 } }) // zeroing
         
@@ -417,7 +416,7 @@ extension AES {
         
         var newState = state.map({ val -> [UInt8] in return val.map { _ in return 0 } })
         
-        for (i, row) in enumerate(colOrderState) {
+        for (i, row) in colOrderState.enumerate() {
             newState[i] = matrixMultiplyPolys(invColBox, row)
         }
         
