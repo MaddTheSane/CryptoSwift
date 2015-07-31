@@ -54,7 +54,6 @@
 		5575C7A51AFA8D00001EEF98 /* HMACTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758A94271A65C59200E46135 /* HMACTests.swift */; };
 		5575C7A61AFA8D00001EEF98 /* Poly1305Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75100F8E19B0BC890005C5F5 /* Poly1305Tests.swift */; };
 		5575C7A71AFA8D00001EEF98 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DA2561A4ED47B002BA3EF /* Helpers.swift */; };
-		5575C7A81AFA8D00001EEF98 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754C8FEC19979F94005AD904 /* ArrayExtension.swift */; };
 		5575C7A91AFA8D00001EEF98 /* HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754BE46719693E190098E6F3 /* HashTests.swift */; };
 		5575C7AA1AFA8D00001EEF98 /* ChaCha20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757DA2581A4ED4D7002BA3EF /* ChaCha20Tests.swift */; };
 		5575C7AB1AFA8D00001EEF98 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755FB1D9199E347D00475437 /* ExtensionsTest.swift */; };
@@ -64,10 +63,10 @@
 		5575C7BB1AFA8DD0001EEF98 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03EB84351A82948E00043870 /* CryptoSwift.framework */; };
 		557BD7DB1B6C102200B424D3 /* IntegerConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE4EB01B1E4A9F007A2B57 /* IntegerConvertible.swift */; };
 		557BD7DC1B6C102200B424D3 /* NSDataSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2D19F1B5689EB000A2615 /* NSDataSequence.swift */; };
+		557BD7DE1B6C13D900B424D3 /* CryptoSwift.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 03EB84351A82948E00043870 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		75100F8F19B0BC890005C5F5 /* Poly1305Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75100F8E19B0BC890005C5F5 /* Poly1305Tests.swift */; };
 		75164E4919AD30AC00737F30 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75164E4819AD30AC00737F30 /* Utils.swift */; };
 		751C5C3D19B26B000094C75D /* Poly1305.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751C5C3C19B26B000094C75D /* Poly1305.swift */; };
-		753988211AB72E4100FAF3FC /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754C8FEC19979F94005AD904 /* ArrayExtension.swift */; };
 		7539E3291B3B4A530037F4E1 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A545F1992D2680017DA75 /* MD5.swift */; };
 		7539E32A1B3B4C480037F4E1 /* NSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752DEF7619693EA000E17557 /* NSDataExtension.swift */; };
 		7539E32B1B3B4C6B0037F4E1 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758A94251A65AEB100E46135 /* HMAC.swift */; };
@@ -169,6 +168,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		557BD7DD1B6C13C500B424D3 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				557BD7DE1B6C13D900B424D3 /* CryptoSwift.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		75B601E0197D69770009B53D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +424,7 @@
 				5575C7A41AFA8D00001EEF98 /* Sources */,
 				5575C7AE1AFA8D00001EEF98 /* Frameworks */,
 				5575C7B01AFA8D00001EEF98 /* Resources */,
+				557BD7DD1B6C13C500B424D3 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -475,7 +486,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Marcin Krzyzanowski";
 				TargetAttributes = {
 					03EB84341A82948E00043870 = {
@@ -608,7 +619,6 @@
 				5575C7A51AFA8D00001EEF98 /* HMACTests.swift in Sources */,
 				5575C7A61AFA8D00001EEF98 /* Poly1305Tests.swift in Sources */,
 				5575C7A71AFA8D00001EEF98 /* Helpers.swift in Sources */,
-				5575C7A81AFA8D00001EEF98 /* ArrayExtension.swift in Sources */,
 				5575C7A91AFA8D00001EEF98 /* HashTests.swift in Sources */,
 				5575C7AA1AFA8D00001EEF98 /* ChaCha20Tests.swift in Sources */,
 				5575C7AB1AFA8D00001EEF98 /* ExtensionsTest.swift in Sources */,
@@ -661,7 +671,6 @@
 				758A94291A65C67400E46135 /* HMACTests.swift in Sources */,
 				75100F8F19B0BC890005C5F5 /* Poly1305Tests.swift in Sources */,
 				757DA2571A4ED47B002BA3EF /* Helpers.swift in Sources */,
-				753988211AB72E4100FAF3FC /* ArrayExtension.swift in Sources */,
 				754BE46819693E190098E6F3 /* HashTests.swift in Sources */,
 				757DA2591A4ED4D7002BA3EF /* ChaCha20Tests.swift in Sources */,
 				755FB1DA199E347D00475437 /* ExtensionsTest.swift in Sources */,
@@ -851,6 +860,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -911,7 +921,8 @@
 				LLVM_LTO = YES;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
+				SWIFT_DISABLE_SAFETY_CHECKS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
